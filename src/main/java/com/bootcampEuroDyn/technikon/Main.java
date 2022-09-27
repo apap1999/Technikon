@@ -1,4 +1,4 @@
-package technikon;
+package com.bootcampEuroDyn.technikon;
 
 public class Main {
 

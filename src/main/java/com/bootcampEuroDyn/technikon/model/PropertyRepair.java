@@ -1,4 +1,4 @@
-package com.bootcampEuroDyn.technikon.domain;
+package com.bootcampEuroDyn.technikon.model;
 
 import java.math.BigDecimal;
 import java.util.Date;

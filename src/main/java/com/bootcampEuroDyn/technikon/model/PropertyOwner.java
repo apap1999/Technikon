@@ -1,14 +1,12 @@
-package com.bootcamp.technikon.domain;
+package com.bootcampEuroDyn.technikon.model;
 
 import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ResultCheckStyle;
@@ -50,12 +48,11 @@ public class PropertyOwner implements Serializable{
 	@Column(name="password", nullable = false)
 	private String passward;
 	private boolean deleted = Boolean.FALSE;
-	
+
 	public PropertyOwner() {}
 	
 	public PropertyOwner(String vatNumber, String firstName, String surname, String phoneNumber, String email,
 			String username, String passward) {
-		super();
 		this.vatNumber = vatNumber;
 		this.firstName = firstName;
 		this.surname = surname;

@@ -1,4 +1,4 @@
-package com.bootcampEuroDyn.technikon.domain;
+package com.bootcampEuroDyn.technikon.model;
 
 public enum RepairType {
 	

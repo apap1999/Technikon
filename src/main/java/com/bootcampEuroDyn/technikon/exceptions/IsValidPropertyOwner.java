@@ -1,4 +1,4 @@
-package com.bootcamp.technikon.exceptions;
+package com.bootcampEuroDyn.technikon.exceptions;
 
 public class IsValidPropertyOwner extends Exception{
 

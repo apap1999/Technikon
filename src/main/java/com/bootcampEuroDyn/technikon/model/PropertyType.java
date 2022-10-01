@@ -1,4 +1,4 @@
-package com.bootcampEuroDyn.technikon.domain;
+package com.bootcampEuroDyn.technikon.model;
 
 public enum PropertyType {
 	DETACHED_HOUSE("is a detached house."),

@@ -1,4 +1,4 @@
-package com.bootcamp.technikon.utility;
+package com.bootcampEuroDyn.technikon.utility;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

@@ -1,7 +1,8 @@
-package com.bootcampEuroDyn.technikon.domain;
+package com.bootcampEuroDyn.technikon.model;
 
 import java.util.Date;
 
+<<<<<<< HEAD:src/main/java/com/bootcampEuroDyn/technikon/domain/PropertyFunctionalities.java
 @Entity
 public class PropertyFunctionalities implements Serializable{
 	
@@ -23,17 +24,27 @@ public class PropertyFunctionalities implements Serializable{
 	public PropertyFunctionalities(String propertyId, String propertyAddress, Date yearOfConstrucitonDate,
 			String vatNumber, PropertyType propertyType) {
 	
+=======
+public class PropertyFunctionalities{
+	
+	
+	private long propertyId;
+	private String propertyAddress;
+	private Date yearOfConstrucitonDate;	
+	private PropertyType propertyType;
+	private String OwnersVatNumber;
+	
+	public PropertyFunctionalities(long propertyId, String propertyAddress, Date yearOfConstrucitonDate,
+			String OwnersVatNumber, PropertyType propertyType) {
+>>>>>>> 92c4d579050416b3c1f5ae0c64b8a83648ce931b:src/main/java/com/bootcampEuroDyn/technikon/model/PropertyFunctionalities.java
 		this.propertyId = propertyId;
 		this.propertyAddress = propertyAddress;
 		this.yearOfConstrucitonDate = yearOfConstrucitonDate;
-		this.vatNumber = vatNumber;
+		this.OwnersVatNumber = OwnersVatNumber;
 		this.propertyType = propertyType;
 	}
-	public String getPropertyId() {
+	public long getPropertyId() {
 		return propertyId;
-	}
-	public void setPropertyId(String propertyId) {
-		this.propertyId = propertyId;
 	}
 	public String getPropertyAddress() {
 		return propertyAddress;
@@ -48,10 +59,10 @@ public class PropertyFunctionalities implements Serializable{
 		this.yearOfConstrucitonDate = yearOfConstrucitonDate;
 	}
 	public String getVatNumber() {
-		return vatNumber;
+		return OwnersVatNumber;
 	}
-	public void setVatNumber(String vatNumber) {
-		this.vatNumber = vatNumber;
+	public void setVatNumber(String OwnersVatNumber) {
+		this.OwnersVatNumber = OwnersVatNumber;
 	}
 	public PropertyType getPropertyType() {
 		return propertyType;
@@ -62,7 +73,7 @@ public class PropertyFunctionalities implements Serializable{
 	@Override
 	public String toString() {
 		return "PropertyFunctionalities [propertyId=" + propertyId + ", propertyAddress=" + propertyAddress
-				+ ", yearOfConstrucitonDate=" + yearOfConstrucitonDate + ", vatNumber=" + vatNumber + ", propertyType="
+				+ ", yearOfConstrucitonDate=" + yearOfConstrucitonDate + ", vatNumber=" + OwnersVatNumber + ", propertyType="
 				+ propertyType + "]";
 	}
 	

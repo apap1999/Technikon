@@ -1,4 +1,4 @@
-package com.bootcamp.technikon.repository;
+package com.bootcampEuroDyn.technikon.repository;
 
 
 

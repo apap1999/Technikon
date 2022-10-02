@@ -1,13 +1,4 @@
-package com.bootcamp.technikon.services;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-
-import com.bootcamp.technikon.domain.PropertyOwner;
-import com.bootcamp.technikon.repository.PropertyOwnerRepository;
-import com.bootcamp.technikon.repository.impl.PropertyOwnerRepositoryImpl;
-import com.bootcamp.technikon.utility.JPAUtil;
-
+package com.bootcampEuroDyn.technikon.services;
 
 public class PropertyOwnerService {
 	

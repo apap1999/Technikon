@@ -1,9 +1,8 @@
 package com.bootcampEuroDyn.technikon.repositoryImpl;
 
-import java.util.Date;
 import java.util.List;
 
-import com.bootcampEuroDyn.technikon.domain.PropertyRepair;
+import com.bootcampEuroDyn.technikon.model.PropertyRepair;
 import com.bootcampEuroDyn.technikon.repository.PropertyRepairRepository;
 
 public class PropertyRepairRepositoryImpl implements PropertyRepairRepository {

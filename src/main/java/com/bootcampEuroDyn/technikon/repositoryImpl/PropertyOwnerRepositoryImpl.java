@@ -1,4 +1,4 @@
-package com.bootcamp.technikon.repository.impl;
+package com.bootcampEuroDyn.technikon.repositoryImpl;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import javax.persistence.Persistence;
 import javax.persistence.PreRemove;
 import javax.persistence.TypedQuery;
 
-import com.bootcamp.technikon.domain.PropertyOwner;
-import com.bootcamp.technikon.repository.PropertyOwnerRepository;
+import com.bootcampEuroDyn.technikon.model.PropertyOwner;
+import com.bootcampEuroDyn.technikon.repository.PropertyOwnerRepository;
 
 public class PropertyOwnerRepositoryImpl implements PropertyOwnerRepository{
 	

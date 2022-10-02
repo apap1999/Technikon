@@ -2,7 +2,7 @@ package com.bootcampEuroDyn.technikon.repositoryImpl;
 
 import java.util.List;
 
-import com.bootcampEuroDyn.technikon.domain.PropertyFunctionalities;
+import com.bootcampEuroDyn.technikon.model.PropertyFunctionalities;
 import com.bootcampEuroDyn.technikon.repository.PropertyFunctionalitiesRepository;
 
 public class PropertyFunctionalitiesImpl implements PropertyFunctionalitiesRepository{

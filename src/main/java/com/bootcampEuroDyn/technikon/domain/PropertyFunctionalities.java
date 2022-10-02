@@ -2,17 +2,27 @@ package com.bootcampEuroDyn.technikon.domain;
 
 import java.util.Date;
 
-
-public class PropertyFunctionalities {
-	private String propertyId;
-	private String propertyAddress;
-	private Date yearOfConstrucitonDate;
-	private String vatNumber;
-	private PropertyType propertyType;
+@Entity
+public class PropertyFunctionalities implements Serializable{
 	
+	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	@Column(name="id",unique = true, updatable= false, nullable =false)
+	private String propertyId;
+	@Column(name="propertyAddress", nullable = false)
+	private String propertyAddress;
+	@Column(name="yearOfConstructionDate", nullable = false)
+	private Date yearOfConstrucitonDate;
+	@Column(name="vatNumber", nullable = false)
+	private String vatNumber;
+	@Column(name="propertyTypeww", nullable = false)
+	private PropertyType propertyType;
+	private boolean deleted = Boolean.FALSE;
+	
+	@OneToMany(mappedBy="propertyFunctionalities")
 	public PropertyFunctionalities(String propertyId, String propertyAddress, Date yearOfConstrucitonDate,
 			String vatNumber, PropertyType propertyType) {
-		super();
+	
 		this.propertyId = propertyId;
 		this.propertyAddress = propertyAddress;
 		this.yearOfConstrucitonDate = yearOfConstrucitonDate;

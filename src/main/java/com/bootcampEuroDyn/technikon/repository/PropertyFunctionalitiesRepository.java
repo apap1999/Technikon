@@ -8,5 +8,6 @@ public interface PropertyFunctionalitiesRepository {
 	 boolean createPropertyFunctionalities (PropertyFunctionalities propertyFunctionalities);
      List<PropertyFunctionalities> readPropertyFunctionalities();
      PropertyFunctionalities readPropertyFunctionalities(String propertyId);
+     
      boolean deletePropertyFunctionalities(String propertyId);
 }

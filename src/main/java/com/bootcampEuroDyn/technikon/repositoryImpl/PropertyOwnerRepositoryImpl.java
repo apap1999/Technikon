@@ -1,7 +1,6 @@
 package com.bootcampEuroDyn.technikon.repositoryImpl;
 
 import java.util.Optional;
-import java.util.function.LongFunction;
 
 import javax.persistence.EntityManager;
 import com.bootcampEuroDyn.technikon.model.PropertyOwner;

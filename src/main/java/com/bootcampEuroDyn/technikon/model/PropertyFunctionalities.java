@@ -1,35 +1,54 @@
 package com.bootcampEuroDyn.technikon.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+
+
 @Entity
-public class PropertyFunctionalities{
+public class PropertyFunctionalities implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	@Column(name="id",unique = true, updatable= false, nullable =false)
 	private long propertyId;
+	@Column(name="propertyAddress", nullable = false)
 	private String propertyAddress;
-	private Date yearOfConstrucitonDate;	
-	private PropertyType propertyType;
+	@Column(name="yearOfConstructionDate", nullable = false)
+	private Date yearOfConstrucitonDate;
+	@Column(name="OwnersVatNumber", nullable = false)
 	private String OwnersVatNumber;
+	@Column(name="propertyType", nullable = false)
+	private PropertyType propertyType;
+	private boolean deleted = Boolean.FALSE;
+	
 	@ManyToOne
 	private PropertyOwner propertyOwner;
+
+	//@OneToMany(mappedBy="propertyFunctionalities")
+	
+	public PropertyFunctionalities(){}
 	
 	public PropertyFunctionalities(long propertyId, String propertyAddress, Date yearOfConstrucitonDate,
 			String OwnersVatNumber, PropertyType propertyType) {
+	
+
+
 		this.propertyId = propertyId;
 		this.propertyAddress = propertyAddress;
 		this.yearOfConstrucitonDate = yearOfConstrucitonDate;
 		this.OwnersVatNumber = OwnersVatNumber;
 		this.propertyType = propertyType;
 	}
-	public PropertyFunctionalities() {}
 	public long getPropertyId() {
 		return propertyId;
 	}
@@ -67,3 +86,4 @@ public class PropertyFunctionalities{
 	
 
 }
+

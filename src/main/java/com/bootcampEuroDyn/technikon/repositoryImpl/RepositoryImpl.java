@@ -29,6 +29,7 @@ public abstract class RepositoryImpl<T,K> implements Repository<T,K>{
 	public abstract String getEntityClassName();
 	public abstract Class<T> getEntityClass();
 	
+
 	@Override
 	public List<T> read(int pageNumber, int pageSize) {
 		return entityManager

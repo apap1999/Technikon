@@ -52,6 +52,7 @@ public class PropertyOwner implements Serializable{
 	private boolean deleted = Boolean.FALSE;
 	@OneToMany(mappedBy = "propertyOwner")
 	private List<PropertyFunctionalities> properties;
+	
 
 	public PropertyOwner() {}
 	

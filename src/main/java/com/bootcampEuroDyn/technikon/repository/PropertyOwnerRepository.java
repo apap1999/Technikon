@@ -1,15 +1,11 @@
 package com.bootcampEuroDyn.technikon.repository;
 
+import com.bootcampEuroDyn.technikon.model.PropertyOwner;
 
-
-public interface PropertyOwnerRepository {
+public interface PropertyOwnerRepository extends Repository<PropertyOwner, Long>{
 	
-	void addPropertyOwner(String vatNumber, String firstName,
-			String surname, String phoneNumber, String email, String username, String password);
-	void getPropertyOwners();
-	void getPropertyOwner(long id);
-	void updateProperyOwnerAddress(long id, String address);
-	void updateProperyOwnerEmail(String vatNumber, String email);
-	void updateProperyOwnerPassword(long id, String password);
-	void safelyDeletePropertyOwner(long id);
+	boolean updateProperyOwnerAddress(long properyOwnerId, String newAddress);
+	boolean updateProperyOwnerEmail(long properyOwnerId, String newEmail);
+	boolean updateProperyOwnerPassword(long id, String newPassword);
+
 }

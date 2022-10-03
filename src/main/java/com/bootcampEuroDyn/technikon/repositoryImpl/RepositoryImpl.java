@@ -1,33 +1,61 @@
 package com.bootcampEuroDyn.technikon.repositoryImpl;
 
 import java.util.List;
+import java.util.Optional;
 
+import javax.persistence.EntityManager;
 import com.bootcampEuroDyn.technikon.repository.Repository;
 
-public class RepositoryImpl<T/*Extends Entity*/> implements Repository<T>{
+public abstract class RepositoryImpl<T,K> implements Repository<T,K>{
+	
+	private EntityManager entityManager;
+	
+	public RepositoryImpl(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 
 	@Override
-	public boolean add(T object) {
-		// TODO Add object to database
+	public Optional<T> add(T t) {
+		try {
+			entityManager.getTransaction().begin();
+			entityManager.persist(t);
+			entityManager.getTransaction().commit();
+			return Optional.of(t);
+		}catch (Exception e) {
+			return Optional.empty();
+		}
+	}
+	
+	public abstract String getEntityClassName();
+	public abstract Class<T> getEntityClass();
+	
+	@Override
+	public List<T> read(int pageNumber, int pageSize) {
+		return entityManager
+				.createQuery("from " + getEntityClassName())
+				.getResultList();
+	}
+
+	@Override
+	public Optional<T> read(K tId) {
+		T t = entityManager
+				.find(getEntityClass(), tId);
+		return (t != null)? Optional.of(t) : Optional.empty();
+	}
+
+	@Override
+	public boolean delete(K tId) {
+		T persistentInstance = entityManager.find(getEntityClass(), tId);
+		if(persistentInstance != null) {
+			try {
+				entityManager.getTransaction().begin();
+				entityManager.remove(persistentInstance);
+				entityManager.getTransaction().commit();
+			}catch (Exception e) {
+				return false;
+			}
+			return true;
+		}
 		return false;
 	}
-
-	@Override
-	public List<T> search(long id) {
-		// TODO Search at the database with the given ID
-		return null;
-	}
-
-	@Override
-	public boolean update(long id) {
-		// TODO Update the fields on the database for object with the given ID
-		return false;
-	}
-
-	@Override
-	public boolean delete(long id) {
-		// TODO Safely delete from database the item with this ID
-		return false;
-	}
-
 }

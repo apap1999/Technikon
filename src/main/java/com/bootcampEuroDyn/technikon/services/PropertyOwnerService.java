@@ -1,46 +1,32 @@
 package com.bootcampEuroDyn.technikon.services;
 
+import java.util.List;
+import java.util.Optional;
+
+import com.bootcampEuroDyn.technikon.exceptions.IsValidPropertyOwner;
+import com.bootcampEuroDyn.technikon.model.PropertyOwner;
+import com.bootcampEuroDyn.technikon.repository.Repository;
+
+
 public class PropertyOwnerService {
 	
-//	private EntityManager entityManager;
-//	private PropertyOwnerRepository propertyOwnerRepo;
-//	
-//	public PropertyOwnerService() {
-//		entityManager = JPAUtil.getEntityManager();
-//		propertyOwnerRepo = new PropertyOwnerRepositoryImpl(entityManager);
-//	}
-//	
-//	public void loadPropertyOwners(String vatNumber, String firstName, String surname,
-//			String phoneNumber, String email, String username, String passwords) {
-//		// Used to issue transactions on the EntityManager
-//		EntityTransaction eTransaction = null;
-//		try {
-//			// Get transaction and start
-//			eTransaction = entityManager.getTransaction();
-//			eTransaction.begin();
-//			// Create and set values for new customer
-//			PropertyOwner propertyOwner = new PropertyOwner();
-//			propertyOwner.setVatNumber(vatNumber);
-//			propertyOwner.setFirstName(firstName);
-//			propertyOwner.setSurname(surname);
-//			propertyOwner.setPhoneNumber(phoneNumber);
-//			propertyOwner.setEmail(email);
-//			propertyOwner.setUsername(username);
-//			propertyOwner.setPassward(passwords);
-//			propertyOwner.setDeleted(false);
-//			// Save the customer object
-//			entityManager.persist(propertyOwner);
-//			eTransaction.commit();
-//		}catch (Exception e) {
-//			// If there is an exception rollback changes
-//			if(eTransaction != null && eTransaction.isActive()) {
-//				eTransaction.rollback();
-//			}
-//			e.printStackTrace();
-//		}finally {
-//			 //Close EntityManager
-//			entityManager.close();
-//		}
-//	}
+	private Repository<PropertyOwner, Long> propertyOwnerRepo;
+	
+	public PropertyOwnerService(Repository<PropertyOwner, Long> propertyOwnerRepo) {
+		this.propertyOwnerRepo = propertyOwnerRepo;
+	}
+	
+	public void addPropertyOwner(PropertyOwner propertyOwner) throws IsValidPropertyOwner {
+		Optional<PropertyOwner> propertOptional = propertyOwnerRepo.add(propertyOwner);
+		if(propertOptional.isEmpty()) {
+			throw new IsValidPropertyOwner("The owner has not been saved");
+		}
+	}
+	
+	public List<PropertyOwner> displayPropertyOwners(){
+		return propertyOwnerRepo.read(1, 10); //default 10 elements per page
+	}
+	
+	
 	 
 }

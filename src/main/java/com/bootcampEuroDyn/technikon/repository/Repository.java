@@ -1,12 +1,13 @@
 package com.bootcampEuroDyn.technikon.repository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface Repository <T> {
+public interface Repository <T,K> {
 	
-	boolean add(T object);
-	List<T> search(long id);
-	boolean update(long id);
-	boolean delete(long id);
+	Optional<T> add(T t);
+	List<T> read(int pageNumber, int pageSize);
+	Optional<T> read(K tId);
+	boolean delete(K tId);
 
 }

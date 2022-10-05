@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import com.bootcampEuroDyn.technikon.domain.PropertyType;
 
 
-
 @Entity
 public class PropertyFunctionalities implements Serializable{
 	

@@ -1,4 +1,4 @@
-package com.bootcampEuroDyn.technikon.services;
+package com.bootcampEuroDyn.technikon.services.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,11 +8,11 @@ import com.bootcampEuroDyn.technikon.model.PropertyOwner;
 import com.bootcampEuroDyn.technikon.repository.Repository;
 
 
-public class PropertyOwnerService {
+public class PropertyOwnerServiceImpl {
 	
 	private Repository<PropertyOwner, Long> propertyOwnerRepo;
 	
-	public PropertyOwnerService(Repository<PropertyOwner, Long> propertyOwnerRepo) {
+	public PropertyOwnerServiceImpl(Repository<PropertyOwner, Long> propertyOwnerRepo) {
 		this.propertyOwnerRepo = propertyOwnerRepo;
 	}
 	

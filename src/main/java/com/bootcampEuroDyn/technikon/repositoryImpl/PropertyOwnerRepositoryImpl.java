@@ -7,7 +7,8 @@ import com.bootcampEuroDyn.technikon.model.PropertyOwner;
 import com.bootcampEuroDyn.technikon.repository.PropertyOwnerRepository;
 
 
-public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, Long> implements PropertyOwnerRepository{
+public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, Long> 
+implements PropertyOwnerRepository{
 	
 	public PropertyOwnerRepositoryImpl(EntityManager entityManager) {
 		super(entityManager);
@@ -35,8 +36,8 @@ public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, L
 		if(propertyOwner == null) {
 			return false;
 		}
-		for (PropertyOwner curPropertyOwner:read(1,10)){
-            if (curPropertyOwner.getEmail()!=null && curPropertyOwner.getEmail().equals(newEmail)){
+		for (PropertyOwner owner:read(1,10)){
+            if (owner.getEmail() !=null && owner.getEmail().equals(newEmail)){
                    return false;
             }
         }

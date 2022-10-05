@@ -3,6 +3,8 @@ package com.bootcampEuroDyn.technikon.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.ManyToOne;
+
 public class PropertyRepair {
 	
 	private Date date;
@@ -13,6 +15,8 @@ public class PropertyRepair {
 	private long ownerID;
 	private long propertyID;
 	private String descriptionBig;
+	@ManyToOne
+	private PropertyFunctionalities propertyFunctionalities;
 	
 	public PropertyRepair(Date date, String descriptionShort, RepairType repairType, StatusType statusType,
 			BigDecimal cost, long ownerID, long propertyID, String descriptionBig) {

@@ -1,10 +1,17 @@
 package com.bootcampEuroDyn.technikon.repositoryImpl;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PreRemove;
+import javax.persistence.TypedQuery;
+
 import com.bootcampEuroDyn.technikon.model.PropertyOwner;
 import com.bootcampEuroDyn.technikon.repository.PropertyOwnerRepository;
+import com.bootcampEuroDyn.technikon.utility.JPAUtil;
+import com.bootcampEuroDyn.technikon.utility.LoadRecords;
 
 
 public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, Long> implements PropertyOwnerRepository{
@@ -23,181 +30,164 @@ public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, L
 	public Class<PropertyOwner> getEntityClass() {
 		return PropertyOwner.class;
 	}
+	
+	
+
+	@Override
+	public Optional<PropertyOwner> add(PropertyOwner t) {
+		EntityManager entityManager = JPAUtil.getEntityManager();
+		try {
+			entityManager.getTransaction().begin();
+			entityManager.persist(t);
+			entityManager.getTransaction().commit();
+			return Optional.of(t);
+		}catch (Exception e) {
+			if(entityManager.getTransaction() != null) {
+				entityManager.getTransaction().rollback();
+			}
+			return Optional.empty();
+		}finally {
+			entityManager.close();
+		}
+	}
+	
+	@Override
+	public List<PropertyOwner> read(int pageNumber, int pageSize) {
+		EntityManager entityManager = JPAUtil.getEntityManager();
+		String querryString = "SELECT c FROM PropertyOwner c WHERE c.id IS NOT NULL";
+		TypedQuery<PropertyOwner> tQuery = entityManager.createQuery(querryString,PropertyOwner.class);
+		List<PropertyOwner> propertyOwnersList = null;
+		try {
+			propertyOwnersList = tQuery.getResultList();
+			propertyOwnersList.forEach(property_owner->System.out.println("{" +
+					property_owner.getVatNumber() +" " +
+					property_owner.getFirstName() + " " + 																							  
+					property_owner.getSurname() + " " +												 
+					property_owner.getPhoneNumber() + " " +
+					property_owner.getAddress()  + " " +
+					property_owner.getEmail() + " " + 
+					property_owner.getUsername() + " " + 
+					property_owner.getPassward() + "}"));															  
+		}catch (NoResultException e) {
+			System.out.println("NoResultException" + e.getMessage());
+		}finally {
+			entityManager.close();
+		}
+		return propertyOwnersList;
+	}
+
+	@Override
+	public Optional<PropertyOwner> read(Long tId) {
+		EntityManager entityManager = JPAUtil.getEntityManager();
+		String queryString = "SELECT c FROM PropertyOwner c WHERE c.id = :_id";
+		TypedQuery<PropertyOwner> tQuery = entityManager.createQuery(queryString,PropertyOwner.class);
+		tQuery.setParameter("_id", tId);
+		PropertyOwner propertyOwner = null;
+		try {
+			propertyOwner = tQuery.getSingleResult();
+			System.out.println("{" + propertyOwner.getVatNumber() + " " +
+									 propertyOwner.getFirstName() + " " + 
+									 propertyOwner.getSurname() + " " +
+									 propertyOwner.getPhoneNumber() + " " +
+									 propertyOwner.getEmail() + " " + 
+									 propertyOwner.getUsername() + " " + 
+									 propertyOwner.getPassward() + "}");
+			return Optional.of(propertyOwner);
+		}catch (NoResultException e) {
+			System.out.println("NoResultException" + e.getMessage());
+			return Optional.empty();
+		}finally {
+			entityManager.close();
+		}
+	}
 
 	@Override
 	public boolean updateProperyOwnerAddress(long properyOwnerId, String newAddress) {
-		return false;
+		EntityManager entityManager = JPAUtil.getEntityManager();
+		PropertyOwner propertyOwner = null;
+		try {
+			entityManager.getTransaction().begin();
+			propertyOwner = entityManager.find(PropertyOwner.class, properyOwnerId);
+			propertyOwner.setAddress(newAddress);
+			entityManager.persist(propertyOwner);
+			entityManager.getTransaction().commit();
+			return true;
+		}catch (Exception e) {
+			if(entityManager.getTransaction() != null) {
+				entityManager.getTransaction().rollback();
+			}
+			e.printStackTrace();
+			return false;
+		}finally {
+			entityManager.close();
+		}
 	}
 
 	@Override
 	public boolean updateProperyOwnerEmail(long properyOwnerId, String newEmail) {
-		Optional<PropertyOwner> propertyOwner = read(properyOwnerId);
-		if(propertyOwner == null) {
+		EntityManager entityManager = JPAUtil.getEntityManager();
+		PropertyOwner propertyOwner = null;
+		try {
+			entityManager.getTransaction().begin();
+			propertyOwner = entityManager.find(PropertyOwner.class, properyOwnerId);
+			propertyOwner.setEmail(newEmail);
+			entityManager.persist(propertyOwner);
+			entityManager.getTransaction().commit();
+			return true;
+		}catch (Exception e) {
+			if(entityManager.getTransaction() != null) {
+				entityManager.getTransaction().rollback();
+			}
+			e.printStackTrace();
 			return false;
+		}finally {
+			entityManager.close();
 		}
-		for (PropertyOwner curPropertyOwner:read(1,10)){
-            if (curPropertyOwner.getEmail()!=null && curPropertyOwner.getEmail().equals(newEmail)){
-                   return false;
-            }
-        }
-        
-		//propertyOwner.setEmail(newEmail);
-        return true;
 	}
 
 	@Override
 	public boolean updateProperyOwnerPassword(long id, String newPassword) {
-		// TODO Auto-generated method stub
-		return false;
+		EntityManager entityManager = JPAUtil.getEntityManager();
+		PropertyOwner propertyOwner = null;
+		try {
+			entityManager.getTransaction().begin();
+			propertyOwner = entityManager.find(PropertyOwner.class, id);
+			propertyOwner.setPassward(newPassword);
+			entityManager.persist(propertyOwner);
+			entityManager.getTransaction().commit();
+			return true;
+		}catch (Exception e) {
+			if(entityManager.getTransaction() != null) {
+				entityManager.getTransaction().rollback();
+			}
+			e.printStackTrace();
+			return false;
+		}finally {
+			entityManager.close();
+		}
 	}
 	
-	/*
-	 * End of PropertyOwnerImpl
-	 */
+	@PreRemove
+	@Override
+	public boolean delete(Long tId) {
+		EntityManager entityManager = JPAUtil.getEntityManager();
+		PropertyOwner propertyOwner = null;
+		try {
 
-//
-//	@Override
-//	public List<PropertyOwner> getPropertyOwners() {
-//		EntityManager eManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-//		// the lowercase c refers to the object
-//    	// :custID is a parameterized query thats value is set below
-//		String qString = "SELECT c FROM PropertyOwner c WHERE c.id IS NOT NULL";
-//		// Issue the query and get a matching Customer
-//		TypedQuery<PropertyOwner> tQuery = eManager.createQuery(qString,PropertyOwner.class);
-//		List<PropertyOwner> customersList = null;
-//		try {
-//			// Get matching customer object and output
-//			customersList = tQuery.getResultList();
-//			customersList.forEach(property_owner->System.out.println("{" +property_owner.getVatNumber() + " " +
-//																		  property_owner.getFirstName() + " " + 
-//																		  property_owner.getSurname() + " " +
-//																		  property_owner.getPhoneNumber() + " " +
-//																		  property_owner.getEmail() + " " + 
-//																		  property_owner.getUsername() + " " + 
-//																		  property_owner.getPassward() + "}"));
-//		}catch (NoResultException e) {
-//			System.out.println("NoResultException" + e.getMessage());
-//		}finally {
-//			eManager.close();
-//		}
-//		return customersList;
-//		
-//	}
-//
-//	@Override
-//	public Optional<PropertyOwner> getPropertyOwner(long id) {
-//		EntityManager eManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-//		// the lowercase c refers to the object
-//    	// :custID is a parameterized query thats value is set below
-//		String queryString = "SELECT c FROM PropertyOwner c WHERE c.id = :_id";
-//		// Issue the query and get a matching Customer
-//		TypedQuery<PropertyOwner> tQuery = eManager.createQuery(queryString,PropertyOwner.class);
-//		tQuery.setParameter("_id", id);
-//		PropertyOwner propertyOwner = null;
-//		try {
-//			// Get matching customer object and output
-//			propertyOwner = tQuery.getSingleResult();
-//			System.out.println("{" + propertyOwner.getVatNumber() + " " +
-//									 propertyOwner.getFirstName() + " " + 
-//									 propertyOwner.getSurname() + " " +
-//									 propertyOwner.getPhoneNumber() + " " +
-//									 propertyOwner.getEmail() + " " + 
-//									 propertyOwner.getUsername() + " " + 
-//									 propertyOwner.getPassward() + "}");
-//		}catch (NoResultException e) {
-//			System.out.println("NoResultException" + e.getMessage());
-//		}finally {
-//			eManager.close();
-//		}
-//		return null;
-//		
-//	}
-//
-//	@Override
-//	public void updateProperyOwnerAddress(long id, String address) {
-//		
-//		
-//	}
-//
-//	@Override
-//	public void updateProperyOwnerEmail(String vatNumber, String email) {
-//		EntityManager eManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-//		EntityTransaction eTransaction = null;
-//		PropertyOwner propertyOwner = null;
-//		try {
-//			 // Get transaction and start
-//			eTransaction = eManager.getTransaction();
-//			eTransaction.begin();
-//			 // Find customer and make changes
-//			propertyOwner = eManager.find(PropertyOwner.class, vatNumber);
-//			propertyOwner.setEmail(email);;	
-//			// Save the customer object
-//			eManager.persist(propertyOwner);
-//			eTransaction.commit();
-//		}catch (Exception e) {
-//			// If there is an exception rollback changes
-//			if(eTransaction != null) {
-//				eTransaction.rollback();
-//			}
-//			e.printStackTrace();
-//		}finally {
-//			// Close EntityManager
-//			eManager.close();
-//		}
-//		
-//	}
-//
-//	@Override
-//	public void updateProperyOwnerPassword(long id, String password) {
-//		EntityManager eManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-//		EntityTransaction eTransaction = null;
-//		PropertyOwner propertyOwner = null;
-//		try {
-//			 // Get transaction and start
-//			eTransaction = eManager.getTransaction();
-//			eTransaction.begin();
-//			 // Find customer and make changes
-//			propertyOwner = eManager.find(PropertyOwner.class, id);
-//			propertyOwner.setPassward(password);;	
-//			// Save the customer object
-//			eManager.persist(propertyOwner);
-//			eTransaction.commit();
-//		}catch (Exception e) {
-//			// If there is an exception rollback changes
-//			if(eTransaction != null) {
-//				eTransaction.rollback();
-//			}
-//			e.printStackTrace();
-//		}finally {
-//			// Close EntityManager
-//			eManager.close();
-//		}
-//		
-//	}
-//
-//	@Override
-//	@PreRemove
-//	public boolean safelyDeletePropertyOwner(long id) {
-//		EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-//		EntityTransaction entityTransaction = null;
-//		PropertyOwner propertyOwner = null;
-//		try {
-//			entityTransaction = entityManager.getTransaction();
-//			entityTransaction.begin();
-//			propertyOwner = entityManager.find(PropertyOwner.class, id);
-//			propertyOwner.setDeleted(true);
-//			entityTransaction.commit();
-//		}catch (Exception e) {
-//			if(entityTransaction != null) {
-//				entityTransaction.rollback();
-//			}
-//			e.printStackTrace();
-//		}finally {
-//			entityManager.close();
-//		}
-//		return false;
-//	}
-//
+			entityManager.getTransaction().begin();
+			propertyOwner = entityManager.find(PropertyOwner.class, tId);
+			propertyOwner.setDeleted(true);
+			entityManager.getTransaction().commit();
+			return true;
+		}catch (Exception e) {
+			if(entityManager.getTransaction() != null) {
+				entityManager.getTransaction().rollback();
+			}
+			e.printStackTrace();
+			return false;
+		}finally {
+			entityManager.close();
+		}
+	}
 
-	
 }

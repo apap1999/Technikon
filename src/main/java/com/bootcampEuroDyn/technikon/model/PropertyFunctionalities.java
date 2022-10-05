@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 
-
 @Entity
 public class PropertyFunctionalities implements Serializable{
 	

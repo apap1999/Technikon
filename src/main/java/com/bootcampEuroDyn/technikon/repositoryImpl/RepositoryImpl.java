@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
+
 import com.bootcampEuroDyn.technikon.repository.Repository;
 
 public abstract class RepositoryImpl<T,K> implements Repository<T,K>{
@@ -32,9 +35,11 @@ public abstract class RepositoryImpl<T,K> implements Repository<T,K>{
 
 	@Override
 	public List<T> read(int pageNumber, int pageSize) {
-		return entityManager
-				.createQuery("from " + getEntityClassName())
-				.getResultList();
+		String qString = "SELECT c FROM " + getEntityClassName() + " c WHERE c.id IS NOT NULL";
+			 return entityManager
+			.createQuery(qString)
+			.getResultList();
+		
 	}
 
 	@Override

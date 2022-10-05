@@ -41,6 +41,8 @@ public class PropertyOwner implements Serializable{
 	private String firstName;
 	@Column(name="surname", nullable = false)
 	private String surname;
+	@Column(name="address", nullable = false)
+	private String address;
 	@Column(name="phoneNumber", nullable = false)
 	private String phoneNumber;
 	@Column(name="email", nullable = false)

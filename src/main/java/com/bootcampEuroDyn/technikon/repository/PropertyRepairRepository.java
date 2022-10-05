@@ -5,5 +5,7 @@ import com.bootcampEuroDyn.technikon.model.PropertyRepair;
 public interface PropertyRepairRepository extends Repository<PropertyRepair, Long>{
 	
 	
+	
+	
 
 }

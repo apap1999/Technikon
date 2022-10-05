@@ -13,9 +13,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+<<<<<<< HEAD
 import org.hibernate.annotations.ResultCheckStyle;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+=======
+import com.bootcampEuroDyn.technikon.domain.PropertyType;
+
+>>>>>>> 1d5aa0c18d21193e77ce3aaf6445225136b2d826
 
 import lombok.Getter;
 import lombok.Setter;

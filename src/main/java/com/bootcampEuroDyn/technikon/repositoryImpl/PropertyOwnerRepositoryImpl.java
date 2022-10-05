@@ -11,10 +11,11 @@ import javax.persistence.TypedQuery;
 import com.bootcampEuroDyn.technikon.model.PropertyOwner;
 import com.bootcampEuroDyn.technikon.repository.PropertyOwnerRepository;
 import com.bootcampEuroDyn.technikon.utility.JPAUtil;
-import com.bootcampEuroDyn.technikon.utility.LoadRecords;
 
 
-public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, Long> implements PropertyOwnerRepository{
+
+public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, Long> 
+implements PropertyOwnerRepository{
 	
 	public PropertyOwnerRepositoryImpl(EntityManager entityManager) {
 		super(entityManager);

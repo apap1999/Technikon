@@ -1,4 +1,4 @@
-package com.bootcampEuroDyn.technikon.model;
+package com.bootcampEuroDyn.technikon.domain;
 
 public enum StatusType {
 	

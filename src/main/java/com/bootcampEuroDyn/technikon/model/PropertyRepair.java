@@ -2,15 +2,14 @@ package com.bootcampEuroDyn.technikon.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.bootcampEuroDyn.technikon.domain.RepairType;
-import com.bootcampEuroDyn.technikon.domain.StatusType;
+import com.bootcampEuroDyn.technikon.model.enumeration.RepairType;
+import com.bootcampEuroDyn.technikon.model.enumeration.StatusType;
 
 
 
@@ -27,14 +26,11 @@ public class PropertyRepair {
 	private RepairType repairType;
 	private StatusType statusType;
 	private BigDecimal cost;
-	
-	
-	//o PropertyOwner mia List apo repairs(@OneToMany)
-	
 	@ManyToOne
 	private PropertyOwner propertyOwner;
 	private long propertyID;
 	private String descriptionBig;
+	
 	public long getId() {
 		return id;
 	}

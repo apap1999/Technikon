@@ -4,14 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
+
 
 import com.bootcampEuroDyn.technikon.repository.Repository;
 
 public abstract class RepositoryImpl<T,K> implements Repository<T,K>{
 	
-	private EntityManager entityManager;
+	protected EntityManager entityManager;
 	
 	public RepositoryImpl(EntityManager entityManager) {
 		this.entityManager = entityManager;

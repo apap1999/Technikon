@@ -1,18 +1,27 @@
 package com.bootcampEuroDyn.technikon.services.impl;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import com.bootcampEuroDyn.technikon.model.PropertyOwner;
 import com.bootcampEuroDyn.technikon.model.PropertyRepair;
-import com.bootcampEuroDyn.technikon.repository.Repository;
+import com.bootcampEuroDyn.technikon.model.enumeration.RepairType;
+import com.bootcampEuroDyn.technikon.model.enumeration.StatusType;
+import com.bootcampEuroDyn.technikon.repository.PropertyRepairRepository;
 import com.bootcampEuroDyn.technikon.services.PropertyRepairService;
 
 
 
 public class PropertyRepairServiceImpl implements PropertyRepairService {
 	
-	private Repository<PropertyRepair, Long> propertyRepairRepository;
+	private PropertyRepairRepository propertyRepairRepository;
 	
-	public PropertyRepairServiceImpl(Repository<PropertyRepair, Long> propertyRepairRepository) {
+	
+
+	public PropertyRepairServiceImpl(PropertyRepairRepository propertyRepairRepository) {
+		
 		this.propertyRepairRepository = propertyRepairRepository;
 	}
 
@@ -31,12 +40,48 @@ public class PropertyRepairServiceImpl implements PropertyRepairService {
 	}
 
 	@Override
-	public PropertyRepair searchPropertyRepair(long id) {
+	public void updateDescriptioShort(long id, String newDescription) {
+		propertyRepairRepository.updatePropertyRepairDescriptioShort(id, newDescription);
 		
-		Optional<PropertyRepair> pr = propertyRepairRepository.read(id);
-		
-		return pr.get();
 	}
+
+	@Override
+	public void updateDate(long repairID, Date newDate) {
+		propertyRepairRepository.updatePropertyRepairDate(repairID, newDate);
+		
+	}
+
+	@Override
+	public void updateType(long repairID, RepairType newType) {
+		propertyRepairRepository.updatePropertyRepairType(repairID, newType);
+		
+	}
+
+	@Override
+	public void updateStatus(long repairID, StatusType newStatus) {
+		propertyRepairRepository.updatePropertyRepairStatus(repairID, newStatus);
+		
+	}
+
+	@Override
+	public void updateCost(long repairID, BigDecimal newCost) {
+		propertyRepairRepository.updatePropertyRepairCost(repairID, newCost);
+		
+	}
+
+	@Override
+	public void updateOwner(long repairID, PropertyOwner newOwner) {
+		propertyRepairRepository.updatePropertyRepairOwner(repairID, newOwner);
+		
+	}
+
+	@Override
+	public void updateDescriptioBig(long repairID, String newDescription) {
+		propertyRepairRepository.updatePropertyRepairDescriptioBig(repairID, newDescription);
+		
+	}
+
+	
 
 	
 

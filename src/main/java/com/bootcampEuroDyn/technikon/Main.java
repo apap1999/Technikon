@@ -2,21 +2,27 @@ package com.bootcampEuroDyn.technikon;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
 
 import com.bootcampEuroDyn.technikon.exceptions.IsValidPropertyOwner;
+import com.bootcampEuroDyn.technikon.model.PropertyFunctionalities;
 import com.bootcampEuroDyn.technikon.model.PropertyOwner;
 import com.bootcampEuroDyn.technikon.model.PropertyRepair;
+import com.bootcampEuroDyn.technikon.model.enumeration.PropertyType;
 import com.bootcampEuroDyn.technikon.model.enumeration.RepairType;
 import com.bootcampEuroDyn.technikon.model.enumeration.StatusType;
+import com.bootcampEuroDyn.technikon.repository.PropertyFunctionalitiesRepository;
+import com.bootcampEuroDyn.technikon.repository.PropertyOwnerRepository;
 import com.bootcampEuroDyn.technikon.repository.PropertyRepairRepository;
-import com.bootcampEuroDyn.technikon.repository.Repository;
+import com.bootcampEuroDyn.technikon.repositoryImpl.PropertyFunctionalitiesImpl;
 import com.bootcampEuroDyn.technikon.repositoryImpl.PropertyOwnerRepositoryImpl;
 import com.bootcampEuroDyn.technikon.repositoryImpl.PropertyRepairRepositoryImpl;
+import com.bootcampEuroDyn.technikon.services.PropertyFunctionalitiesService;
+import com.bootcampEuroDyn.technikon.services.PropertyOwnerService;
 import com.bootcampEuroDyn.technikon.services.PropertyRepairService;
+import com.bootcampEuroDyn.technikon.services.impl.PropertyFunctionalitiesServiceImpl;
 import com.bootcampEuroDyn.technikon.services.impl.PropertyOwnerServiceImpl;
 import com.bootcampEuroDyn.technikon.services.impl.PropertyRepairServiceImpl;
 import com.bootcampEuroDyn.technikon.utility.JPAUtil;
@@ -24,16 +30,23 @@ import com.bootcampEuroDyn.technikon.utility.JPAUtil;
 public class Main {
 
 	public static void main(String[] args) throws IsValidPropertyOwner {
-		
-		
+
 		EntityManager entityManager = JPAUtil.getEntityManager();
 
+
 		
-		Repository<PropertyOwner, Long> propertyOwneRepository= new PropertyOwnerRepositoryImpl(entityManager);
-		PropertyOwnerServiceImpl propertyOwnerService = new PropertyOwnerServiceImpl(propertyOwneRepository);
+		PropertyOwnerRepository propertyOwneRepository= new PropertyOwnerRepositoryImpl(entityManager);
+		PropertyOwnerService propertyOwnerService = new PropertyOwnerServiceImpl(propertyOwneRepository);
 		
 		PropertyRepairRepository propertyRepaiRepository = new PropertyRepairRepositoryImpl(entityManager);
 		PropertyRepairService propertyRepairService = new PropertyRepairServiceImpl(propertyRepaiRepository);
+		
+		
+		PropertyFunctionalitiesRepository propertyRepository = new PropertyFunctionalitiesImpl(entityManager);
+		PropertyFunctionalitiesService propertyService = new PropertyFunctionalitiesServiceImpl(propertyRepository);
+		
+		
+		
 		
 		
 		/*------------ OWNER 1 ------------*/
@@ -60,6 +73,15 @@ public class Main {
 		propertyOwner2.setPassward("243652346");
 		propertyOwnerService.addPropertyOwner(propertyOwner2);
 		
+		/*------------ PROPERTY 1 ------------*/
+		PropertyFunctionalities property = new PropertyFunctionalities();
+		property.setPropertyAddress("adgsadgsdg");
+		property.setYearOfConstrucitonDate(new Date());
+		property.setPropertyType(PropertyType.APARTMENT_BUILDING.name());
+		propertyService.addPropertyFunctionalities(property);
+		
+		
+		
 		
 		/*------------ REPAIR 1 ------------*/
 		PropertyRepair repair1 = new PropertyRepair();
@@ -70,20 +92,20 @@ public class Main {
 		repair1.setStatusType(StatusType.COMPLETE);
 		repair1.setCost(new BigDecimal("632.5"));
 		repair1.setPropertyOwner(propertyOwner);
-		repair1.setPropertyID(22);
+		repair1.setPorperty(property);
 		repair1.setDescriptionBig("big test");
 		propertyRepairService.addPropertyRepair(repair1);
 		
 		/*------------ REPAIR 2 ------------*/
+
 		PropertyRepair repair2 = new PropertyRepair();
-		
 		repair2.setDate(LocalDate.of(2019, 9, 1));
 		repair2.setDescriptionShort("sort test2");
 		repair2.setRepairType(RepairType.FRAMES);
 		repair2.setStatusType(StatusType.IN_PROGRESS);
 		repair2.setCost(new BigDecimal("412.5"));
-		repair2.setPropertyOwner(propertyOwner2);
-		repair2.setPropertyID(54);
+		//repair2.setPropertyOwner(propertyOwner2);
+		repair2.setPorperty(property);
 		repair2.setDescriptionBig("big test2");
 		propertyRepairService.addPropertyRepair(repair2);
 		
@@ -96,7 +118,7 @@ public class Main {
 		repair3.setStatusType(StatusType.PENDING);
 		repair3.setCost(new BigDecimal("342.1"));
 		repair3.setPropertyOwner(propertyOwner);
-		repair3.setPropertyID(67);
+		repair3.setPorperty(property);
 		repair3.setDescriptionBig("big test3");
 		propertyRepairService.addPropertyRepair(repair3);
 		
@@ -108,7 +130,7 @@ public class Main {
 		repair4.setStatusType(StatusType.COMPLETE);
 		repair4.setCost(new BigDecimal("16.8"));
 		repair4.setPropertyOwner(propertyOwner2);
-		repair4.setPropertyID(23);
+		repair4.setPorperty(property);
 		repair4.setDescriptionBig("big test4");
 		propertyRepairService.addPropertyRepair(repair4);
 		
@@ -145,7 +167,7 @@ public class Main {
 		propertyOwnerService.displayPropertyOwners();
 		
 		JPAUtil.shutdown();
-		
+
 	}
 
 }

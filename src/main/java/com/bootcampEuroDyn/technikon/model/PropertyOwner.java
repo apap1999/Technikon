@@ -20,48 +20,71 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
+/**
+ * Model Class Property Owner contains the needed attributes of an owner.
+ * Attributes will be stored on a database with Hibernate. Hibernate will make
+ * the connection and create the table property_owners with the specified
+ * attributes as columns.
+ * 
+ * @SQLDelete and @Where annotations will help us handle deletions on the
+ *            database.
+ * @Getters @Setters and @ToString are generated through Lombok.
+ * 
+ * @author Marougkas Orfeas
+ */
 @Getter
 @Setter
 @ToString
 @Entity
-@Table(name="property_owners")
+@Table(name = "property_owners")
 @SQLDelete(sql = "UPDATE property_owners SET deleted = true WHERE id = ?", check = ResultCheckStyle.COUNT)
 @Where(clause = "deleted=false")
-public class PropertyOwner implements Serializable{
+public class PropertyOwner implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="_id", unique = true, updatable = false, nullable = false)
+	@Column(name = "_id", unique = true, updatable = false, nullable = false)
 	private long id;
-	@Column(name="vatNumber", nullable = false)
+	@Column(name = "vatNumber", nullable = false)
 	private String vatNumber;
-	@Column(name="firstName", nullable = false)
+	@Column(name = "firstName", nullable = false)
 	private String firstName;
-	@Column(name="surname", nullable = false)
+	@Column(name = "surname", nullable = false)
 	private String surname;
-	@Column(name="address", nullable = false)
+	@Column(name = "address", nullable = false)
 	private String address;
-	@Column(name="phoneNumber", nullable = false)
+	@Column(name = "phoneNumber", nullable = false)
 	private String phoneNumber;
-	@Column(name="email", nullable = false)
+	@Column(name = "email", nullable = false)
 	private String email;
-	@Column(name="user", nullable = false)
+	@Column(name = "user", nullable = false)
 	private String username;
-	@Column(name="password", nullable = false)
+	@Column(name = "password", nullable = false)
 	private String passward;
+	/*
+	 * This attribute will help us to keep the deleted records on the database
+	 * (safely deleted records)
+	 */
 	private boolean deleted = Boolean.FALSE;
-	
-	
-	
+
+	/*
+	 * Foreign Keys - Relation with the other Tables
+	 */
+	@OneToMany(mappedBy = "propertyOwner")
+	private List<PropertyFunctionalities> properties;
+
 	@OneToMany(mappedBy = "propertyOwner")
 	private List<PropertyRepair> repairs;
-	
 
-	public PropertyOwner() {}
-	
+	/*
+	 * Constructors
+	 */
+
+	public PropertyOwner() {
+	}
+
 	public PropertyOwner(String vatNumber, String firstName, String surname, String phoneNumber, String email,
 			String username, String passward) {
 		this.vatNumber = vatNumber;

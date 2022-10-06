@@ -3,38 +3,43 @@ package com.bootcampEuroDyn.technikon.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
 import com.bootcampEuroDyn.technikon.model.enumeration.RepairType;
 import com.bootcampEuroDyn.technikon.model.enumeration.StatusType;
 
-
-
-
-
 @Entity
+
 public class PropertyRepair {
-	
+
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private LocalDate date;
 	private String descriptionShort;
 	private RepairType repairType;
 	private StatusType statusType;
 	private BigDecimal cost;
+	private String descriptionBig;
 	@ManyToOne
 	private PropertyOwner propertyOwner;
-	private long propertyID;
-	private String descriptionBig;
-
+	@ManyToOne
+	private PropertyFunctionalities porperty;
+	
+	
+	public PropertyFunctionalities getPorperty() {
+		return porperty;
+	}
+	public void setPorperty(PropertyFunctionalities porperty) {
+		this.porperty = porperty;
+	}
 	public long getId() {
 		return id;
-
 	}
 	public void setId(long id) {
 		this.id = id;
@@ -69,23 +74,24 @@ public class PropertyRepair {
 	public void setCost(BigDecimal cost) {
 		this.cost = cost;
 	}
-	public PropertyOwner getPropertyOwner() {
-		return propertyOwner;
-	}
-	public void setPropertyOwner(PropertyOwner propertyOwner) {
-		this.propertyOwner = propertyOwner;
-	}
-	public long getPropertyID() {
-		return propertyID;
-	}
-	public void setPropertyID(long propertyID) {
-		this.propertyID = propertyID;
-	}
+	
 	public String getDescriptionBig() {
 		return descriptionBig;
 	}
 	public void setDescriptionBig(String descriptionBig) {
 		this.descriptionBig = descriptionBig;
 	}
+	public PropertyOwner getPropertyOwner() {
+		return propertyOwner;
+	}
+	public void setPropertyOwner(PropertyOwner propertyOwner) {
+		this.propertyOwner = propertyOwner;
+	}
+	
+	
+	
+
+	
+
 
 }

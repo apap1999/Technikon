@@ -3,16 +3,19 @@ package com.bootcampEuroDyn.technikon.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.ManyToOne;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+
 
 import com.bootcampEuroDyn.technikon.model.enumeration.RepairType;
 import com.bootcampEuroDyn.technikon.model.enumeration.StatusType;
 
 @Entity
+
 public class PropertyRepair {
 
 	@Id
@@ -23,14 +26,19 @@ public class PropertyRepair {
 	private RepairType repairType;
 	private StatusType statusType;
 	private BigDecimal cost;
-
-	@ManyToOne
-	private PropertyOwner propertyOwner;
 	private long propertyID;
 	private String descriptionBig;
+	
+	@ManyToOne
+	private PropertyOwner propertyOwner;
 
+	@ManyToOne
+	private PropertyFunctionalities propertyFunctionalities;
+	
+	
 	public long getId() {
 		return id;
+
 	}
 
 	public void setId(long id) {
@@ -77,13 +85,14 @@ public class PropertyRepair {
 		this.cost = cost;
 	}
 
-	public PropertyOwner getPropertyOwner() {
-		return propertyOwner;
-	}
 
-	public void setPropertyOwner(PropertyOwner propertyOwner) {
-		this.propertyOwner = propertyOwner;
-	}
+//	public PropertyOwner getPropertyOwner() {
+//		return propertyOwner;
+//	}
+//
+//	public void setPropertyOwner(PropertyOwner propertyOwner) {
+//		this.propertyOwner = propertyOwner;
+//	}
 
 	public long getPropertyID() {
 		return propertyID;
@@ -100,5 +109,6 @@ public class PropertyRepair {
 	public void setDescriptionBig(String descriptionBig) {
 		this.descriptionBig = descriptionBig;
 	}
+
 
 }

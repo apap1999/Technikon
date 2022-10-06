@@ -3,6 +3,7 @@ package com.bootcampEuroDyn.technikon.repository;
 import java.util.List;
 import java.util.Optional;
 
+
 /**
  * Generic Interface containing Add Read Delete Functions
  *
@@ -11,7 +12,7 @@ import java.util.Optional;
  * @param <K> Key Type : Long id
  */
 public interface Repository<T, K> {
-
+	
 	Optional<T> add(T t);
 
 	List<T> read(int pageNumber, int pageSize);
@@ -19,5 +20,6 @@ public interface Repository<T, K> {
 	Optional<T> read(K tId);
 
 	boolean delete(K tId);
+	
 
 }

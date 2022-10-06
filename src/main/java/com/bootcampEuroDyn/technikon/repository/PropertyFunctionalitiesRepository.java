@@ -1,13 +1,14 @@
 package com.bootcampEuroDyn.technikon.repository;
 
-import java.util.List;
+import java.util.Date;
 
 import com.bootcampEuroDyn.technikon.model.PropertyFunctionalities;
 
-public interface PropertyFunctionalitiesRepository {
-	 boolean createPropertyFunctionalities (PropertyFunctionalities propertyFunctionalities);
-     List<PropertyFunctionalities> readPropertyFunctionalities();
-     PropertyFunctionalities readPropertyFunctionalities(String propertyId);
-     
-     boolean deletePropertyFunctionalities(String propertyId);
+public interface PropertyFunctionalitiesRepository extends Repository<PropertyFunctionalities, Long> {
+	boolean updatePropertyFunctionalityAddress(long propertyFunctionalityId, String newAddress);
+
+	boolean updatePropertyFunctionalityYearOfConstructionDate(long propertyFunctionalityId,
+			Date newYearOfConstructiongDate);
+
+	boolean updatePropertyFunctionalityPropertyType(long id, String newPropertyType);
 }

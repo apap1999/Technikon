@@ -64,11 +64,11 @@ public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, L
 		try {
 			propertyOwnersList = tQuery.getResultList();
 			// For UI purposes
-			propertyOwnersList.forEach(property_owner -> System.out.println("{" + property_owner.getVatNumber() + " "
-					+ property_owner.getFirstName() + " " + property_owner.getSurname() + " "
-					+ property_owner.getPhoneNumber() + " " + property_owner.getAddress() + " "
-					+ property_owner.getEmail() + " " + property_owner.getUsername() + " "
-					+ property_owner.getPassward().replaceAll("([0-9][a-z][A-Z])", "*") + "}"));
+			propertyOwnersList.forEach(property_owner -> System.out.println("{" + property_owner.getVatNumber() + ", "
+					+ property_owner.getFirstName() + ", " + property_owner.getSurname() + ", "
+					+ property_owner.getPhoneNumber() + ", " + property_owner.getAddress() + ", "
+					+ property_owner.getEmail() + ", " + property_owner.getUsername() + ", "
+					+ property_owner.getPassward().replaceAll("[\\s\\S]*", "*") + "}"));
 		} catch (NoResultException e) {
 			System.out.println("NoResultException" + e.getMessage());
 		} finally {
@@ -86,10 +86,10 @@ public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, L
 		PropertyOwner propertyOwner = null;
 		try {
 			propertyOwner = tQuery.getSingleResult();
-			System.out.println("{" + propertyOwner.getVatNumber() + " " + propertyOwner.getFirstName() + " "
-					+ propertyOwner.getSurname() + " " + propertyOwner.getPhoneNumber() + " " + propertyOwner.getEmail()
-					+ " " + propertyOwner.getUsername() + " "
-					+ propertyOwner.getPassward().replaceAll("([0-9][a-z][A-Z])", "*") + "}");
+			System.out.println("{" + propertyOwner.getVatNumber() + ", " + propertyOwner.getFirstName() + ", "
+					+ propertyOwner.getSurname() + ", " + propertyOwner.getPhoneNumber() + " " + propertyOwner.getEmail()
+					+ ", " + propertyOwner.getUsername() + ", "
+					+ propertyOwner.getPassward().replaceAll("[\\s\\S]*", "*") + "}");
 			return Optional.of(propertyOwner);
 		} catch (NoResultException e) {
 			System.out.println("NoResultException" + e.getMessage());
@@ -198,10 +198,10 @@ public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, L
 		PropertyOwner propertyOwner = null;
 		try {
 			propertyOwner = tQuery.getSingleResult();
-			System.out.println("{" + propertyOwner.getVatNumber() + " " + propertyOwner.getFirstName() + " "
-					+ propertyOwner.getSurname() + " " + propertyOwner.getPhoneNumber() + " " + propertyOwner.getEmail()
-					+ " " + propertyOwner.getUsername() + " "
-					+ propertyOwner.getPassward().replaceAll("([0-9][a-z][A-Z])", "*") + "}");
+			System.out.println("{" + propertyOwner.getVatNumber() + ", " + propertyOwner.getFirstName() + ", "
+					+ propertyOwner.getSurname() + ", " + propertyOwner.getPhoneNumber() + ", " + propertyOwner.getEmail()
+					+ ", " + propertyOwner.getUsername() + ", "
+					+ propertyOwner.getPassward().replaceAll("[\\s\\S]*", "*") + "}");
 			return Optional.of(propertyOwner);
 		} catch (NoResultException e) {
 			System.out.println("NoResultException" + e.getMessage());
@@ -220,10 +220,10 @@ public class PropertyOwnerRepositoryImpl extends RepositoryImpl<PropertyOwner, L
 		PropertyOwner propertyOwner = null;
 		try {
 			propertyOwner = tQuery.getSingleResult();
-			System.out.println("{" + propertyOwner.getVatNumber() + " " + propertyOwner.getFirstName() + " "
-					+ propertyOwner.getSurname() + " " + propertyOwner.getPhoneNumber() + " " + propertyOwner.getEmail()
-					+ " " + propertyOwner.getUsername() + " "
-					+ propertyOwner.getPassward().replaceAll("([0-9][a-z][A-Z])", "*") + "}");
+			System.out.println("{" + propertyOwner.getVatNumber() + ", " + propertyOwner.getFirstName() + ", "
+					+ propertyOwner.getSurname() + ", " + propertyOwner.getPhoneNumber() + ", " + propertyOwner.getEmail()
+					+ " " + propertyOwner.getUsername() + ", "
+					+ propertyOwner.getPassward().replaceAll("[\\s\\S]*", "*") + "}");
 			return Optional.of(propertyOwner);
 		} catch (NoResultException e) {
 			System.out.println("NoResultException" + e.getMessage());

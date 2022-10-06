@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import com.bootcampEuroDyn.technikon.model.PropertyOwner;
@@ -16,7 +17,8 @@ import com.bootcampEuroDyn.technikon.model.enumeration.RepairType;
 import com.bootcampEuroDyn.technikon.model.enumeration.StatusType;
 import com.bootcampEuroDyn.technikon.repository.PropertyOwnerRepository;
 import com.bootcampEuroDyn.technikon.repository.PropertyRepairRepository;
-import com.bootcampEuroDyn.technikon.services.impl.PropertyOwnerServiceImpl;
+import com.bootcampEuroDyn.technikon.service.impl.PropertyOwnerServiceImpl;
+import com.bootcampEuroDyn.technikon.utility.JPAUtil;
 
 public class PropertyRepairRepositoryImpl extends RepositoryImpl<PropertyRepair, Long> 
 implements PropertyRepairRepository{
@@ -129,6 +131,9 @@ implements PropertyRepairRepository{
 		return tQuery.getSingleResult().getRepairs();
 		
 	}
+	
+	
+	
 
 	
 

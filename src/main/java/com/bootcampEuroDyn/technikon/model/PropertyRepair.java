@@ -14,7 +14,6 @@ import com.bootcampEuroDyn.technikon.model.enumeration.RepairType;
 import com.bootcampEuroDyn.technikon.model.enumeration.StatusType;
 
 @Entity
-
 public class PropertyRepair {
 
 	@Id
@@ -29,13 +28,15 @@ public class PropertyRepair {
 	@ManyToOne
 	private PropertyOwner propertyOwner;
 	@ManyToOne
-	private PropertyFunctionalities porperty;
+	private Property porperty;
 	
 	
-	public PropertyFunctionalities getPorperty() {
+	
+	
+	public Property getPorperty() {
 		return porperty;
 	}
-	public void setPorperty(PropertyFunctionalities porperty) {
+	public void setPorperty(Property porperty) {
 		this.porperty = porperty;
 	}
 	public long getId() {
@@ -86,6 +87,13 @@ public class PropertyRepair {
 	}
 	public void setPropertyOwner(PropertyOwner propertyOwner) {
 		this.propertyOwner = propertyOwner;
+	}
+	
+	@Override
+	public String toString() {
+		return "{id=" + id + ", date=" + date + ", descriptionShort=" + descriptionShort
+				+ ", repairType=" + repairType + ", statusType=" + statusType + ", cost=" + cost + ", descriptionBig="
+				+ descriptionBig + ", propertyOwner=" + propertyOwner + ", porperty=" + porperty + "}";
 	}
 	
 	

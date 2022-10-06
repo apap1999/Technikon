@@ -2,9 +2,9 @@ package com.bootcampEuroDyn.technikon.repository;
 
 import java.util.Date;
 
-import com.bootcampEuroDyn.technikon.model.PropertyFunctionalities;
+import com.bootcampEuroDyn.technikon.model.Property;
 
-public interface PropertyFunctionalitiesRepository extends Repository<PropertyFunctionalities, Long> {
+public interface PropertyRepository extends Repository<Property, Long> {
 	boolean updatePropertyFunctionalityAddress(long propertyFunctionalityId, String newAddress);
 
 	boolean updatePropertyFunctionalityYearOfConstructionDate(long propertyFunctionalityId,

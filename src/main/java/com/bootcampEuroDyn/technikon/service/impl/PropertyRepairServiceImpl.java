@@ -1,4 +1,4 @@
-package com.bootcampEuroDyn.technikon.services.impl;
+package com.bootcampEuroDyn.technikon.service.impl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -11,7 +11,7 @@ import com.bootcampEuroDyn.technikon.model.PropertyRepair;
 import com.bootcampEuroDyn.technikon.model.enumeration.RepairType;
 import com.bootcampEuroDyn.technikon.model.enumeration.StatusType;
 import com.bootcampEuroDyn.technikon.repository.PropertyRepairRepository;
-import com.bootcampEuroDyn.technikon.services.PropertyRepairService;
+import com.bootcampEuroDyn.technikon.service.PropertyRepairService;
 
 
 

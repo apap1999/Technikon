@@ -9,29 +9,29 @@ import javax.persistence.NoResultException;
 import javax.persistence.PreRemove;
 import javax.persistence.TypedQuery;
 
-import com.bootcampEuroDyn.technikon.model.PropertyFunctionalities;
-import com.bootcampEuroDyn.technikon.repository.PropertyFunctionalitiesRepository;
+import com.bootcampEuroDyn.technikon.model.Property;
+import com.bootcampEuroDyn.technikon.repository.PropertyRepository;
 import com.bootcampEuroDyn.technikon.utility.JPAUtil;
 
-public class PropertyFunctionalitiesImpl extends RepositoryImpl<PropertyFunctionalities, Long>
-		implements PropertyFunctionalitiesRepository {
+public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long>
+		implements PropertyRepository {
 
-	public PropertyFunctionalitiesImpl(EntityManager entityManager) {
+	public PropertyRepositoryImpl(EntityManager entityManager) {
 		super(entityManager);
 	}
 
 	@Override
 	public String getEntityClassName() {
-		return PropertyFunctionalities.class.getName();
+		return Property.class.getName();
 	}
 
 	@Override
-	public Class<PropertyFunctionalities> getEntityClass() {
-		return PropertyFunctionalities.class;
+	public Class<Property> getEntityClass() {
+		return Property.class;
 	}
 
 	@Override
-	public Optional<PropertyFunctionalities> add(PropertyFunctionalities t) {
+	public Optional<Property> add(Property t) {
 		EntityManager entityManager = JPAUtil.getEntityManager();
 		try {
 			entityManager.getTransaction().begin();
@@ -49,13 +49,13 @@ public class PropertyFunctionalitiesImpl extends RepositoryImpl<PropertyFunction
 	}
 
 	@Override
-	public List<PropertyFunctionalities> read(int pageNumber, int pageSize) {
+	public List<Property> read(int pageNumber, int pageSize) {
 		EntityManager entityManager = JPAUtil.getEntityManager();
 
 		String querryString = "SELECT c FROM PropertyFunctionalities c WHERE c.id IS NOT NULL";
-		TypedQuery<PropertyFunctionalities> tQuery = entityManager.createQuery(querryString,PropertyFunctionalities.class);
+		TypedQuery<Property> tQuery = entityManager.createQuery(querryString,Property.class);
 
-		List<PropertyFunctionalities> PropertyFunctionalitiesList = null;
+		List<Property> PropertyFunctionalitiesList = null;
 		try {
 			PropertyFunctionalitiesList = tQuery.getResultList();
 			PropertyFunctionalitiesList.forEach(property_functionalities -> System.out.println(
@@ -72,13 +72,13 @@ public class PropertyFunctionalitiesImpl extends RepositoryImpl<PropertyFunction
 	}
 
 	@Override
-	public Optional<PropertyFunctionalities> read(Long tId) {
+	public Optional<Property> read(Long tId) {
 		EntityManager entityManager = JPAUtil.getEntityManager();
 
 		String queryString = "SELECT c FROM PropertyFunctionalities c WHERE c.id = :_id";
-		TypedQuery<PropertyFunctionalities> tQuery = entityManager.createQuery(queryString,PropertyFunctionalities.class);
+		TypedQuery<Property> tQuery = entityManager.createQuery(queryString,Property.class);
 		tQuery.setParameter("_id", tId);
-		PropertyFunctionalities propertyFunctionalities = null;
+		Property propertyFunctionalities = null;
 		try {
 			propertyFunctionalities = tQuery.getSingleResult();
 			System.out.println(
@@ -98,10 +98,10 @@ public class PropertyFunctionalitiesImpl extends RepositoryImpl<PropertyFunction
 	@Override
 	public boolean updatePropertyFunctionalityAddress(long properyFunctionalityId, String newAddress) {
 		EntityManager entityManager = JPAUtil.getEntityManager();
-		PropertyFunctionalities propertyFunctionalities = null;
+		Property propertyFunctionalities = null;
 		try {
 			entityManager.getTransaction().begin();
-			propertyFunctionalities = entityManager.find(PropertyFunctionalities.class, properyFunctionalityId);
+			propertyFunctionalities = entityManager.find(Property.class, properyFunctionalityId);
 			propertyFunctionalities.setPropertyAddress(newAddress);
 			entityManager.persist(propertyFunctionalities);
 			entityManager.getTransaction().commit();
@@ -121,10 +121,10 @@ public class PropertyFunctionalitiesImpl extends RepositoryImpl<PropertyFunction
 	public boolean updatePropertyFunctionalityYearOfConstructionDate(long properyFunctionalityId,
 			Date newYearOfConstructiongDate) {
 		EntityManager entityManager = JPAUtil.getEntityManager();
-		PropertyFunctionalities propertyFunctionalities = null;
+		Property propertyFunctionalities = null;
 		try {
 			entityManager.getTransaction().begin();
-			propertyFunctionalities = entityManager.find(PropertyFunctionalities.class, properyFunctionalityId);
+			propertyFunctionalities = entityManager.find(Property.class, properyFunctionalityId);
 			propertyFunctionalities.setYearOfConstrucitonDate(newYearOfConstructiongDate);
 			entityManager.persist(propertyFunctionalities);
 			entityManager.getTransaction().commit();
@@ -143,10 +143,10 @@ public class PropertyFunctionalitiesImpl extends RepositoryImpl<PropertyFunction
 	@Override
 	public boolean updatePropertyFunctionalityPropertyType(long id, String newPropertyType) {
 		EntityManager entityManager = JPAUtil.getEntityManager();
-		PropertyFunctionalities propertyFunctionalities = null;
+		Property propertyFunctionalities = null;
 		try {
 			entityManager.getTransaction().begin();
-			propertyFunctionalities = entityManager.find(PropertyFunctionalities.class, id);
+			propertyFunctionalities = entityManager.find(Property.class, id);
 			propertyFunctionalities.setPropertyType(newPropertyType);
 			entityManager.persist(propertyFunctionalities);
 			entityManager.getTransaction().commit();
@@ -166,11 +166,11 @@ public class PropertyFunctionalitiesImpl extends RepositoryImpl<PropertyFunction
 	@Override
 	public boolean delete(Long tId) {
 		EntityManager entityManager = JPAUtil.getEntityManager();
-		PropertyFunctionalities propertyFunctionalities = null;
+		Property propertyFunctionalities = null;
 		try {
 
 			entityManager.getTransaction().begin();
-			propertyFunctionalities = entityManager.find(PropertyFunctionalities.class, tId);
+			propertyFunctionalities = entityManager.find(Property.class, tId);
 			propertyFunctionalities.setDeleted(true);
 			entityManager.getTransaction().commit();
 			return true;

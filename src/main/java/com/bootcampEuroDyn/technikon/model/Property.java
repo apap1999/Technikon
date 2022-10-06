@@ -28,7 +28,7 @@ import lombok.ToString;
 @Table(name = "property_functionalities")
 @SQLDelete(sql = "UPDATE property_functionalities SET deleted = true WHERE id = ?", check = ResultCheckStyle.COUNT)
 @Where(clause = "deleted=false")
-public class PropertyFunctionalities implements Serializable {
+public class Property implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -40,7 +40,6 @@ public class PropertyFunctionalities implements Serializable {
 	private String propertyAddress;
 	@Column(name = "yearOfConstructionDate", nullable = false)
 	private Date yearOfConstrucitonDate;
-	
 //	private String OwnersVatNumber;
 	@Column(name = "propertyType", nullable = false)
 	private String propertyType;
@@ -52,13 +51,12 @@ public class PropertyFunctionalities implements Serializable {
 	@OneToMany(mappedBy = "porperty")
 	private List<PropertyRepair> repairs;
 
-	public PropertyFunctionalities() {
+	public Property() {
 	}
 
-	public PropertyFunctionalities(long propertyId, String propertyAddress, Date yearOfConstrucitonDate,
+	public Property(String propertyAddress, Date yearOfConstrucitonDate,
 			 String propertyType) {
 
-		this.propertyId = propertyId;
 		this.propertyAddress = propertyAddress;
 		this.yearOfConstrucitonDate = yearOfConstrucitonDate;
 //		this.OwnersVatNumber = OwnersVatNumber;

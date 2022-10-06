@@ -1,4 +1,4 @@
-package com.bootcampEuroDyn.technikon.services;
+package com.bootcampEuroDyn.technikon.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

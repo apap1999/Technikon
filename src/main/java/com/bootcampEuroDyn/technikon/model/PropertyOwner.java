@@ -73,7 +73,7 @@ public class PropertyOwner implements Serializable {
 	 * Foreign Keys - Relation with the other Tables
 	 */
 	@OneToMany(mappedBy = "propertyOwner")
-	private List<PropertyFunctionalities> properties;
+	private List<Property> properties;
 
 	@OneToMany(mappedBy = "propertyOwner")
 	private List<PropertyRepair> repairs;

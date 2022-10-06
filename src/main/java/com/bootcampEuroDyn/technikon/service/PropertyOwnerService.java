@@ -1,4 +1,4 @@
-package com.bootcampEuroDyn.technikon.services;
+package com.bootcampEuroDyn.technikon.service;
 
 import java.util.List;
 

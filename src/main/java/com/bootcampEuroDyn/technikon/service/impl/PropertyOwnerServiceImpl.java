@@ -1,4 +1,4 @@
-package com.bootcampEuroDyn.technikon.services.impl;
+package com.bootcampEuroDyn.technikon.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.bootcampEuroDyn.technikon.exceptions.IsValidPropertyOwner;
 import com.bootcampEuroDyn.technikon.model.PropertyOwner;
 import com.bootcampEuroDyn.technikon.repository.PropertyOwnerRepository;
-import com.bootcampEuroDyn.technikon.services.PropertyOwnerService;
+import com.bootcampEuroDyn.technikon.service.PropertyOwnerService;
 
 /**
  * This class contains the implementation of the PropertyOwnerService methods

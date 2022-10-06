@@ -53,12 +53,12 @@ public class PropertyOwner implements Serializable{
 	@Column(name="password", nullable = false)
 	private String passward;
 	private boolean deleted = Boolean.FALSE;
-	@OneToMany(mappedBy = "propertyOwner")
-	private List<PropertyFunctionalities> properties;
-	
-	
-	@OneToMany(mappedBy = "propertyOwner")
-	private List<PropertyRepair> repairs;
+
+//	@OneToMany(mappedBy = "propertyOwner")
+//	private List<PropertyFunctionalities> properties;
+//	
+//	@OneToMany(mappedBy = "propertyOwner")
+//	private List<PropertyRepair> repairs;
 	
 
 	public PropertyOwner() {}

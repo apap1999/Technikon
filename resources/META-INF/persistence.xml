@@ -12,7 +12,7 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
             <property name="javax.persistence.jdbc.url"
                       value="jdbc:mysql://localhost:3306/technikon?createDatabaseIfNotExist=true"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.jdbc.password" value="aggelos1999194!"/>
+            <property name="javax.persistence.jdbc.password" value="Ra!kdar9"/>
             
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
             <property name="hibernate.show_sql" value="true"/>

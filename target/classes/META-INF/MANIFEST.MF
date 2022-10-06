@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: andre
-=======
-Built-By: aggel
->>>>>>> 1d5aa0c18d21193e77ce3aaf6445225136b2d826
 Build-Jdk: 17.0.4.1
 Created-By: Maven Integration for Eclipse
 

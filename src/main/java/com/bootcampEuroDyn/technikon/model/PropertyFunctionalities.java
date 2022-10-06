@@ -13,14 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-<<<<<<< HEAD
 import org.hibernate.annotations.ResultCheckStyle;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-=======
-import com.bootcampEuroDyn.technikon.domain.PropertyType;
 
->>>>>>> 1d5aa0c18d21193e77ce3aaf6445225136b2d826
+import com.bootcampEuroDyn.technikon.domain.PropertyType;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -45,28 +42,28 @@ public class PropertyFunctionalities implements Serializable {
 	private String propertyAddress;
 	@Column(name = "yearOfConstructionDate", nullable = false)
 	private Date yearOfConstrucitonDate;
-	@Column(name = "OwnersVatNumber", nullable = false)
-	private String OwnersVatNumber;
+	
+//	private String OwnersVatNumber;
 	@Column(name = "propertyType", nullable = false)
-	private PropertyType propertyType;
+	private String propertyType;
 	private boolean deleted = Boolean.FALSE;
 
-	@ManyToOne
-	private PropertyOwner propertyOwner;
-
-	@OneToMany(mappedBy = "propertyFunctionalities")
-	private List<PropertyRepair> repairs;
+//	@ManyToOne
+//	private PropertyOwner propertyOwner;
+//	
+//	@OneToMany(mappedBy = "propertyFunctionalities")
+//	private List<PropertyRepair> repairs;
 
 	public PropertyFunctionalities() {
 	}
 
 	public PropertyFunctionalities(long propertyId, String propertyAddress, Date yearOfConstrucitonDate,
-			String OwnersVatNumber, PropertyType propertyType) {
+			 String propertyType) {
 
 		this.propertyId = propertyId;
 		this.propertyAddress = propertyAddress;
 		this.yearOfConstrucitonDate = yearOfConstrucitonDate;
-		this.OwnersVatNumber = OwnersVatNumber;
+//		this.OwnersVatNumber = OwnersVatNumber;
 		this.propertyType = propertyType;
 	}
 

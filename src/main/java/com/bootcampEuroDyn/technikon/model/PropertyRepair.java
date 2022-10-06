@@ -3,15 +3,13 @@ package com.bootcampEuroDyn.technikon.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
-<<<<<<< HEAD
 import javax.persistence.ManyToOne;
 
-=======
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+
 
 import com.bootcampEuroDyn.technikon.domain.RepairType;
 import com.bootcampEuroDyn.technikon.domain.StatusType;
@@ -21,7 +19,7 @@ import com.bootcampEuroDyn.technikon.domain.StatusType;
 
 
 @Entity
->>>>>>> 1d5aa0c18d21193e77ce3aaf6445225136b2d826
+
 public class PropertyRepair {
 	
 	@Id
@@ -34,31 +32,18 @@ public class PropertyRepair {
 	private BigDecimal cost;
 	
 	
-	//o PropertyOwner mia List apo repairs(@OneToMany)
+//	@ManyToOne
+//	private PropertyOwner propertyOwner;
+//	private long propertyID;
+//	private String descriptionBig;
+//
+//	@ManyToOne
+//	private PropertyFunctionalities propertyFunctionalities;
 	
-	@ManyToOne
-	private PropertyOwner propertyOwner;
-	private long propertyID;
-	private String descriptionBig;
-<<<<<<< HEAD
-	@ManyToOne
-	private PropertyFunctionalities propertyFunctionalities;
 	
-	public PropertyRepair(Date date, String descriptionShort, RepairType repairType, StatusType statusType,
-			BigDecimal cost, long ownerID, long propertyID, String descriptionBig) {
-		
-		this.date = date;
-		this.descriptionShort = descriptionShort;
-		this.repairType = repairType;
-		this.statusType = statusType;
-		this.cost = cost;
-		this.ownerID = ownerID;
-		this.propertyID = propertyID;
-		this.descriptionBig = descriptionBig;
-=======
 	public long getId() {
 		return id;
->>>>>>> 1d5aa0c18d21193e77ce3aaf6445225136b2d826
+
 	}
 	public void setId(long id) {
 		this.id = id;
@@ -93,23 +78,6 @@ public class PropertyRepair {
 	public void setCost(BigDecimal cost) {
 		this.cost = cost;
 	}
-	public PropertyOwner getPropertyOwner() {
-		return propertyOwner;
-	}
-	public void setPropertyOwner(PropertyOwner propertyOwner) {
-		this.propertyOwner = propertyOwner;
-	}
-	public long getPropertyID() {
-		return propertyID;
-	}
-	public void setPropertyID(long propertyID) {
-		this.propertyID = propertyID;
-	}
-	public String getDescriptionBig() {
-		return descriptionBig;
-	}
-	public void setDescriptionBig(String descriptionBig) {
-		this.descriptionBig = descriptionBig;
-	}
+
 
 }

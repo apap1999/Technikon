@@ -1,13 +1,9 @@
 package com.bootcampEuroDyn.technikon.repository;
 
-import java.util.List;
-
 import com.bootcampEuroDyn.technikon.model.PropertyFunctionalities;
 
-public interface PropertyFunctionalitiesRepository {
-	 boolean createPropertyFunctionalities (PropertyFunctionalities propertyFunctionalities);
-     List<PropertyFunctionalities> readPropertyFunctionalities();
-     PropertyFunctionalities readPropertyFunctionalities(String propertyId);
-     
-     boolean deletePropertyFunctionalities(String propertyId);
+public interface PropertyFunctionalitiesRepository extends Repository<PropertyFunctionalities, Long> {
+	boolean updateProperyFunctionalityAddress(long properyOwnerId, String newAddress);
+	boolean updateProperyFunctionalityYearOfConstructionDate(long properyOwnerId, String newYearOfConstructiongDate);
+	boolean updateProperyFunctionalityPropertyType(long id, String newPropertyType);
 }

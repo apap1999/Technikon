@@ -1,13 +1,14 @@
 package com.bootcampEuroDyn.technikon.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
+import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
 import com.bootcampEuroDyn.technikon.model.enumeration.RepairType;
 import com.bootcampEuroDyn.technikon.model.enumeration.StatusType;
 
@@ -21,7 +22,7 @@ public class PropertyRepair {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private long id;
-	private Date date;
+	private LocalDate date;
 	private String descriptionShort;
 	private RepairType repairType;
 	private StatusType statusType;
@@ -30,17 +31,18 @@ public class PropertyRepair {
 	private PropertyOwner propertyOwner;
 	private long propertyID;
 	private String descriptionBig;
-	
+
 	public long getId() {
 		return id;
+
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 	public String getDescriptionShort() {

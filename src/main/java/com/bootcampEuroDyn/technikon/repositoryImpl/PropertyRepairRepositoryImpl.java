@@ -1,16 +1,22 @@
 package com.bootcampEuroDyn.technikon.repositoryImpl;
 
 
+
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import com.bootcampEuroDyn.technikon.model.PropertyOwner;
 import com.bootcampEuroDyn.technikon.model.PropertyRepair;
 import com.bootcampEuroDyn.technikon.model.enumeration.RepairType;
 import com.bootcampEuroDyn.technikon.model.enumeration.StatusType;
+import com.bootcampEuroDyn.technikon.repository.PropertyOwnerRepository;
 import com.bootcampEuroDyn.technikon.repository.PropertyRepairRepository;
+import com.bootcampEuroDyn.technikon.services.impl.PropertyOwnerServiceImpl;
 
 public class PropertyRepairRepositoryImpl extends RepositoryImpl<PropertyRepair, Long> 
 implements PropertyRepairRepository{
@@ -42,7 +48,7 @@ implements PropertyRepairRepository{
 	}
 
 	@Override
-	public void updatePropertyRepairDate(long repairID, Date newDate) {
+	public void updatePropertyRepairDate(long repairID, LocalDate newDate) {
 		PropertyRepair repair = getRepairAndStartTransaction(repairID);
 		repair.setDate(newDate);
 		finishEntity(repair);
@@ -95,6 +101,40 @@ implements PropertyRepairRepository{
 		super.entityManager.persist(repair);
 		super.entityManager.getTransaction().commit();
 	}
+
+	@Override
+	public List<PropertyRepair> searchRepairbyDate(LocalDate date) {
+				
+		String qString = "SELECT c FROM PropertyRepair c WHERE c.date = :_date";
+		TypedQuery<PropertyRepair> tQuery = super.entityManager.createQuery(qString,PropertyRepair.class);
+		tQuery.setParameter("_date", date);		
+		return tQuery.getResultList();
+	}
+	
+	
+	@Override
+	public List<PropertyRepair> searchRepairByDateRange(LocalDate fromDate, LocalDate toDate) {
+		String qString = "SELECT c FROM PropertyRepair c WHERE c.date BETWEEN :_fromDate AND :_toDate";
+		TypedQuery<PropertyRepair> tQuery = super.entityManager.createQuery(qString,PropertyRepair.class);
+		tQuery.setParameter("_fromDate", fromDate);
+		tQuery.setParameter("_toDate", toDate);
+		return tQuery.getResultList();
+	}
+
+	@Override
+	public List<PropertyRepair> searchRepairByUserId(long sId) {
+		String qString = "SELECT c FROM PropertyOwner c WHERE c.id = :_id";
+		TypedQuery<PropertyOwner> tQuery = super.entityManager.createQuery(qString,PropertyOwner.class);
+		tQuery.setParameter("_id", sId);
+		return tQuery.getSingleResult().getRepairs();
+		
+	}
+
+	
+
+	
+
+	
 
 	
 	

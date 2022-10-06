@@ -1,6 +1,8 @@
 package com.bootcampEuroDyn.technikon;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
@@ -61,7 +63,8 @@ public class Main {
 		
 		/*------------ REPAIR 1 ------------*/
 		PropertyRepair repair1 = new PropertyRepair();
-		repair1.setDate(new Date());
+		LocalDate localDate = LocalDate.of(2019, 8, 19);
+		repair1.setDate(localDate);
 		repair1.setDescriptionShort("sort test1");
 		repair1.setRepairType(RepairType.ELECTRICAL_WORK);
 		repair1.setStatusType(StatusType.COMPLETE);
@@ -73,7 +76,8 @@ public class Main {
 		
 		/*------------ REPAIR 2 ------------*/
 		PropertyRepair repair2 = new PropertyRepair();
-		repair2.setDate(new Date());
+		
+		repair2.setDate(LocalDate.of(2019, 9, 1));
 		repair2.setDescriptionShort("sort test2");
 		repair2.setRepairType(RepairType.FRAMES);
 		repair2.setStatusType(StatusType.IN_PROGRESS);
@@ -85,7 +89,8 @@ public class Main {
 		
 		/*------------ REPAIR 3 ------------*/
 		PropertyRepair repair3 = new PropertyRepair();
-		repair3.setDate(new Date());
+	
+		repair3.setDate(LocalDate.of(2009, 4, 19));
 		repair3.setDescriptionShort("sort test3");
 		repair3.setRepairType(RepairType.PAINTING);
 		repair3.setStatusType(StatusType.PENDING);
@@ -97,7 +102,7 @@ public class Main {
 		
 		/*------------ REPAIR 4 ------------*/
 		PropertyRepair repair4 = new PropertyRepair();
-		repair4.setDate(new Date());
+		repair4.setDate(LocalDate.of(2019, 10, 4));
 		repair4.setDescriptionShort("sort test4");
 		repair4.setRepairType(RepairType.INULATION);
 		repair4.setStatusType(StatusType.COMPLETE);
@@ -115,7 +120,27 @@ public class Main {
 		propertyRepairService.updateDescriptioShort(2, "This is my new description");
 		
 		propertyRepairService.updateDescriptioShort(1, "This is my new description 2");
-		System.out.println("-----------------------------------------------------");
+		System.out.println("-------------------------AT DATE "+LocalDate.of(2009, 4, 19)+" THE REPARIS ARE----------------------------");
+		for(PropertyRepair p: propertyRepairService.searchByDate(LocalDate.of(2009, 4, 19))) {
+			System.out.print("Repair Id: " + p.getId());
+			System.out.println(" FROM: " + p.getPropertyOwner().getFirstName());
+	
+		}
+		
+		System.out.println("-------------------------REPAIR FOR SINGLE USER----------------------------");
+		
+		for(PropertyRepair p: propertyRepairService.searchById(1)) {
+			System.out.println("Repair Id: " + p.getId());
+		}
+		
+		
+		System.out.println("-------------------------FROM DATE: "+ LocalDate.of(2019, 8, 1) + " UNTIL DATE: " + LocalDate.of(2019, 10, 30) +" ----------------------------");
+		for(PropertyRepair p: propertyRepairService.searchByDateRange(LocalDate.of(2019, 8, 1), LocalDate.of(2019, 10, 30))) {
+			System.out.println("Repair Id: " + p.getId());
+		}
+		
+		
+		
 		
 		propertyOwnerService.displayPropertyOwners();
 		

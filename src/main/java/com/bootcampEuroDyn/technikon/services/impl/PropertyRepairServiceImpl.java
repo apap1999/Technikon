@@ -1,6 +1,7 @@
 package com.bootcampEuroDyn.technikon.services.impl;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -46,7 +47,7 @@ public class PropertyRepairServiceImpl implements PropertyRepairService {
 	}
 
 	@Override
-	public void updateDate(long repairID, Date newDate) {
+	public void updateDate(long repairID, LocalDate newDate) {
 		propertyRepairRepository.updatePropertyRepairDate(repairID, newDate);
 		
 	}
@@ -80,6 +81,24 @@ public class PropertyRepairServiceImpl implements PropertyRepairService {
 		propertyRepairRepository.updatePropertyRepairDescriptioBig(repairID, newDescription);
 		
 	}
+
+	@Override
+	public List<PropertyRepair> searchByDate(LocalDate date) {
+		
+		return propertyRepairRepository.searchRepairbyDate(date);
+	}
+	
+	@Override
+	public List<PropertyRepair> searchByDateRange(LocalDate fromDate, LocalDate toDate) {
+		return propertyRepairRepository.searchRepairByDateRange(fromDate, toDate);
+	}
+
+	@Override
+	public List<PropertyRepair> searchById(long sId) {
+		return propertyRepairRepository.searchRepairByUserId(sId);
+	}
+
+	
 
 	
 

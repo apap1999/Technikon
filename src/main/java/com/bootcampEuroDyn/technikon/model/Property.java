@@ -25,8 +25,8 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name = "property_functionalities")
-@SQLDelete(sql = "UPDATE property_functionalities SET deleted = true WHERE id = ?", check = ResultCheckStyle.COUNT)
+@Table(name = "property")
+@SQLDelete(sql = "UPDATE property SET deleted = true WHERE id = ?", check = ResultCheckStyle.COUNT)
 @Where(clause = "deleted=false")
 public class Property implements Serializable {
 

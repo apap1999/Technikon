@@ -26,7 +26,7 @@ public class PropertyServiceImpl implements PropertyService {
 	}
 
 	@Override
-	public List<Property> displayPropertyFunctionalities() {
+	public List<Property> displayProperties() {
 		return propertyFunctionalitiesRepository.read(1, 20);
 	}
 	public List<Property> searchPropertyFunctionalities(long id) throws IsValidProperty {
@@ -37,8 +37,8 @@ public class PropertyServiceImpl implements PropertyService {
 		return propertyOptional.stream().toList();
 	}
 	
-	public void updatePropertyAddress(long id, String Address) {
-		propertyFunctionalitiesRepository.updatePropertyFunctionalityAddress(id, Address);
+	public void updatePropertyAddress(long id, String address) {
+		
 	}
 	
 	public void updatePropertyYearOfConstructionDate(long id, Date newYearOfConstructionDate) {
@@ -49,19 +49,17 @@ public class PropertyServiceImpl implements PropertyService {
 		propertyFunctionalitiesRepository.updatePropertyFunctionalityPropertyType(id, newPropertyType);
 	}
 	
-	public void deleteProperty(Long tId) {
-		propertyFunctionalitiesRepository.delete(tId);
-	}
+
 
 	@Override
-	public void updatePropertyFunctionalityAddress(int i, String string) {
-		// TODO Auto-generated method stub
+	public void updatePropertyAddress(int id, String address) {
+		propertyFunctionalitiesRepository.updatePropertyFunctionalityAddress(id, address);
 		
 	}
 
 	@Override
-	public void deleteProperty(int i) {
-		// TODO Auto-generated method stub
+	public boolean deleteProperty(long i) {
+		return propertyFunctionalitiesRepository.delete(i);
 		
 	}
 

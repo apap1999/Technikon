@@ -211,57 +211,76 @@ public class Data {
 		/*-----------------------OWNER TEST-------------------------*/
 		System.out.println("-----------------------OWNER TEST-------------------------");
 		System.out.println("All the Property Owners inside DB are: ");
-        System.out.println("========================================");
+        System.out.println("----------------------------------------");
         propertyOwnerService.displayPropertyOwners();
         
         System.out.println("\nUpdate Owners address method called (update record 1 email to aggelos@mail.com)");
         propertyOwnerService.updateOwnersEmail(1, "NEWMAIL@mail.com");
         System.out.println("All the Property Owners inside DB are: ");
-        System.out.println("========================================");
+        System.out.println("---------------------------------------");
         propertyOwnerService.displayPropertyOwners();
         
         
         System.out.println("\nDelete Method Called:");
         propertyOwnerService.deletePropertyOwner(2);
         System.out.println("All the Property Owners inside DB are: ");
-        System.out.println("========================================");       
+        System.out.println("---------------------------------------");       
         propertyOwnerService.displayPropertyOwners();
         
-        System.out.println("\nSearch method called for vatNumber (139492148)\nOutput is:");
-        propertyOwnerService.searchByVat("139492148");
+        System.out.println("\nSearch method called for vatNumber (951)\nOutput is:");
+        propertyOwnerService.searchByVat("951");
+        System.out.println();
         
         
         /*-----------------------REPAIRS TESTS-------------------------*/
         
-        System.out.println("-----------------------REPAIRS TESTS-------------------------");
+        System.out.println("-----------------------REPAIRS TESTS-------------------------\n");
+        
 		
 		/*-----------------------SEARCH-------------------------*/
 		
 		/*-----------------------SEARCH WITH SPECIFIC DATE-------------------------*/
-		System.out.println("-------------------------AT DATE " + LocalDate.of(2019, 8, 19)+ " THE REPARIS ARE----------------------------");
+		System.out.println("-------------------------AT DATE " + LocalDate.of(2019, 8, 19)+ " THE REPARIS ARE----------------------------\n");
 		for(PropertyRepair p: propertyRepairService.searchByDate(LocalDate.of(2019, 8, 19))) {
-			System.out.print("Repair Id: " + p.getId());
-			System.out.println(" FROM: " + p.getPropertyOwner().getFirstName() + " WITH ID: " + p.getPropertyOwner().getId());
+			System.out.println(p.toString());
+			
 			
 	
 		}
 		
 		/*-----------------------SEARCH WITH OWNER ID-------------------------*/
-		System.out.println("-------------------------REPAIR FOR SINGLE USER----------------------------");
+		System.out.println("\n-------------------------REPAIR FOR SINGLE USER----------------------------\n");
 		System.out.println("FOR OWNER WITH ID: 1");
 		for(PropertyRepair p: propertyRepairService.searchById(1)) {
-			System.out.println("REPAIR ID:" + p.getId());
+			System.out.println(p.toString());
 		}
 		
-		/*-----------------------SEARCH WITH DATE RANGE-------------------------*/
-		
-		System.out.println("-------------------------FROM DATE: "+ LocalDate.of(2019, 8, 1) + " UNTIL DATE: " + LocalDate.of(2019, 10, 30) +" ----------------------------");
+		/*-----------------------SEARCH WITH DATE RANGE-------------------------*/		
+		System.out.println("\n-------------------------FROM DATE: "+ LocalDate.of(2019, 8, 1) + " UNTIL DATE: " + LocalDate.of(2019, 10, 30) +" ----------------------------\n");
 		for(PropertyRepair p: propertyRepairService.searchByDateRange(LocalDate.of(2019, 8, 1), LocalDate.of(2019, 10, 30))) {
-			System.out.println("REPAIR ID: " + p.getId());
+			System.out.println(p.toString());
 		}
 		
 		
+		/*-----------------------PROPERTY TESTS-------------------------*/
+        
+        System.out.println("-----------------------PROPERTY TESTS-------------------------\n");
+		System.out.println("All the Properties inside DB are: ");
+        System.out.println("----------------------------------");
+        propertyService.displayProperties();
+        
+        System.out.println("\nUpdate Property address to NEW ADDRESS");
+        propertyService.updatePropertyAddress(3, "NEW ADDRESS");
+        System.out.println("All the Properties inside DB are: ");
+        System.out.println("---------------------------------------");
+        propertyService.displayProperties();
 		
+		
+        System.out.println("\nDelete Property:");
+        propertyService.deleteProperty(2);
+        System.out.println("All the Properties inside DB are: ");
+        System.out.println("---------------------------------------");       
+        propertyService.displayProperties();
 		
 		
 		

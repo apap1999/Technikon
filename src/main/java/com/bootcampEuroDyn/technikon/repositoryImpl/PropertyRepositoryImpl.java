@@ -52,7 +52,7 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long>
 	public List<Property> read(int pageNumber, int pageSize) {
 		EntityManager entityManager = JPAUtil.getEntityManager();
 
-		String querryString = "SELECT c FROM PropertyFunctionalities c WHERE c.id IS NOT NULL";
+		String querryString = "SELECT c FROM Property c WHERE c.id IS NOT NULL";
 		TypedQuery<Property> tQuery = entityManager.createQuery(querryString,Property.class);
 
 		List<Property> PropertyFunctionalitiesList = null;
@@ -96,14 +96,15 @@ public class PropertyRepositoryImpl extends RepositoryImpl<Property, Long>
 	}
 
 	@Override
-	public boolean updatePropertyFunctionalityAddress(long properyFunctionalityId, String newAddress) {
+	public boolean updatePropertyFunctionalityAddress(long properyId, String newAddress) {
 		EntityManager entityManager = JPAUtil.getEntityManager();
-		Property propertyFunctionalities = null;
+		Property property = null;
 		try {
+			
 			entityManager.getTransaction().begin();
-			propertyFunctionalities = entityManager.find(Property.class, properyFunctionalityId);
-			propertyFunctionalities.setPropertyAddress(newAddress);
-			entityManager.persist(propertyFunctionalities);
+			property = entityManager.find(Property.class, properyId);
+			property.setPropertyAddress(newAddress);
+			entityManager.persist(property);
 			entityManager.getTransaction().commit();
 			return true;
 		} catch (Exception e) {

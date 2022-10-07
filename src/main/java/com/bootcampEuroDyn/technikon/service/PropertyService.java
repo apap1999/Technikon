@@ -8,9 +8,9 @@ import com.bootcampEuroDyn.technikon.model.Property;
 public interface PropertyService{
 
 	void addProperty(Property property);
-	List<Property> displayPropertyFunctionalities();
+	List<Property> displayProperties();
 	List<Property> searchPropertyFunctionalities(long id) throws IsValidProperty ;
-	void updatePropertyFunctionalityAddress(int i, String string);
-	void deleteProperty(int i);
+	void updatePropertyAddress(int id, String address);
+	boolean deleteProperty(long i);
 	void searchByVat(String string);
 }
